@@ -272,6 +272,8 @@ install_packages( )
   local client_dependencies_fedora=( "gcc-gfortran" )
   local client_dependencies_sles=(  "pkg-config" "dpkg" )
 
+  local docs_dependencies_ubuntu=( "graphviz" )
+
   case "${ID}" in
     ubuntu)
       elevate_if_not_root apt update
@@ -279,6 +281,10 @@ install_packages( )
 
       if [[ "${build_clients}" == true ]]; then
         install_apt_packages "${client_dependencies_ubuntu[@]}"
+      fi
+
+      if [[ "${build_docs}" == true ]]; then
+	install_apt_packages "${docs_dependencies_ubuntu[@]}"
       fi
       ;;
 
